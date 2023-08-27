@@ -15,7 +15,7 @@ A repo containing **flakes** and **dotfiles** for booting [**NixOS**]() with one
 
 ## Key Commands
 
-- **rebuild** - `sudo rebuild nixos-rebuild --flake ~/dotty/[ x11 | sway | hyprland]`
+- **rebuild** - `sudo nixos-rebuild switch --flake ~/dotty/[ x11 | sway | hyprland]`
 
 
 ## Core System Packages
@@ -30,8 +30,9 @@ A repo containing **flakes** and **dotfiles** for booting [**NixOS**]() with one
 - `exa` - _replacement for *nix **ls** command_ 
 - `delta` - _for high quality diff paging_
 - `du-dust` - _replacement for *nix **du** command_
+- `just` - _nice command runner used often in Rust, C, and JS/TS_
 - `git`, `gh`, and `lazygit` - _for versioning support_ 
 - `starship` - _for prompt loveliness_
-- `iperf3`, `inetutils`, and `lsof` - _for network tooling_
+- `iperf3`, `inetutils`, `trippy` and `lsof` - _for network tooling_
 - `nodejs_18`, `rustup`, `go` - _for baseline programming support_
 - `marksman`, `nodePackages.typescript-language-server`, `helm-ls`, `gopls`, and `rust-analyzer` - _for better LSP support out of the box_

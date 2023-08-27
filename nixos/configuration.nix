@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # inputs.home-manager.nixosModules.home-manager
     ];
 
   # Bootloader.
@@ -58,11 +59,8 @@
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
-        dmenu
-	i3status
 	i3lock-color
 	i3blocks
-	i3a
       ];
 
     };
@@ -107,6 +105,8 @@
     telegram-desktop
     discord
     whatsapp-for-linux
+    _1password-gui
+    _1password
     qutebrowser
     theme-obsidian2
     iconpack-obsidian
@@ -126,10 +126,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     i3
-    i3a
-    # i3status
     i3lock-color
-    # i3blocks
     wget
     polybarFull
     zls
@@ -137,6 +134,13 @@
     haskellPackages.greenclip # Clip Manager which works with Rofi
     curl
     wget
+    openssh
+    gnupg
+    gpgme
+    gpg-tui
+    mdp # Markdown Viewer
+    xfce.thunar
+    lf # text based file manager
     bat
     exa
     htop
@@ -144,6 +148,7 @@
     git
     lxappearance
     dracula-theme
+    juno-theme
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     vimix-icon-theme
@@ -151,17 +156,20 @@
     chromium
     rofi
     lazygit
+    findutils
+    fzy
+    trippy
     ripgrep
     arandr
     nitrogen
     alacritty
-    kitty
     delta
-    autotiling
+    autotiling # auto switch from horizontal to vertical in smart fashion
     neocomp # compositor for X11
     inetutils
     iperf3
     firefox
+    unzip
     # nix-colors # https://github.com/Misterio77/nix-colors
     neovim
     neofetch
@@ -180,6 +188,7 @@
     go
     gopls
     gcc
+    just
     starship
   ];
 
