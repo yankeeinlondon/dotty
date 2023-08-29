@@ -1,18 +1,18 @@
 {
-  description = "NixOS switchable configuration for i3, sway, and Hyprland tiling managers";
+  description = "Dotty: NixOS configuration for i3, sway, and Hyprland tiling managers";
 
   inputs = {
     # Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # ensure home-manager uses same nixpkgs that we do
     # Colors
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:  
-    let
+    let # pre-computed let block
       system = "x86_64-linux";
     
       pkgs = import nixpkgs {
@@ -22,26 +22,31 @@
         };
       };
 
+      lib = nixpkgs.lib;
     in 
     {
       nixosConfigurations = {
         # i3 configuration using X11
-        i3 = nixpkgs.lib.nixosSystem {
+        i3 = lib.nixosSystem {
         specialArgs = { inherit inputs system; };
 
-        # load cross configuration file (which in turn loads hardware config)
-          modules = [ 
-            ./nixos/configuration.nix 
+          modules = [
+            ./i3/default.nix
+          ];
+
+        };
+      };
+
+      homeManagerConfigurations = {
+        ken = home-manager.lib.homeManagerConfiguration {
+          inherit system pkgs;
+          username = "ken";
+          homeDirectory = "/home/ken";
+          configuration = [
+            ./homey/home.nix
           ];
         };
-
-        #homeConfigurations = {
-        #  "ken@nixos" = home-manager.lib.homeManagerConfiguration {
-        #    extraSpecialArgs = { inherit inpts; };
-        #    modules = [ ./homey/home.nix ];
-        #  };
-        #};
-    };
+      };
   };
-
+ 
 }
