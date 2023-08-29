@@ -1,34 +1,80 @@
+set dotenv-load
+
+repo := `pwd`
+
 RESET :='\033[0m'
 BOLD := '\033[1m'
 GREEN := '\033[38;5;2m'
 
 default:
-  @echo "{{BOLD}}DOTTY CLI{{RESET}}"
-  @echo "--------------------------"
-  @echo 
+  @echo
+  @echo "DOTTY CLI"
+  @echo "------------------"
   @just --list
   @echo
 
-manager *WM:
 
-
-cmd := if "${WM}" == "i3" {
-  "i3"
-} else if "${WM}" == "sway" {
-  "sway"
-} else if "${WM}" == "hyprland" {
-  "hyprland"
-} else { "" }
-
-msg := if "${WM}" == "" {
-  "syntax: just manager <mngr>\n\n- where <mngr> is one of the following: i3 | sway | hyprland\n"
-} else {
-  "Booting to ${WM} windows manager\n----------------------------------\n\n"
-}
-
-# testing conditionals
-testing *WM:
-  @bash -c "if "{{WM}}" == ""; then echo "oopsie"; fi"
-
+# system and nixos info 
+info:
+  @echo "Nix Info:"
   @echo
+  @nix flake metadata 
+  @nix-info
+  @nix flake show
+  @echo 
+  @echo "System Info:"
+  neofetch
 
+# rebuild the current profile and switch to it
+rebuild:
+  @echo "Build Dotty Flake and Switch"
+  @echo "----------------------------"
+
+  sudo nixos-rebuild switch --flake ./
+
+# build the current profile but do not add to the bootloader or activate it yet
+test-build:
+  @echo "Test Build of Dotty Flake"
+  @echo "-------------------------"
+
+  sudo nixos-rebuild test --flake ./
+
+# build and prep the bootload for the "sway" manager
+sway:
+  @echo "Switching to the Sway tiling manager"
+  @echo "------------------------------------"
+
+  sudo nixos-rebuild boot --flake ./#sway
+
+# build and prep the bootloader for the "hyprland" manager
+hyprland:
+  @echo "Switching to the Hyprland tiling manager"
+  @echo "------------------------------------"
+
+  sudo nixos-rebuild boot --flake ./#hyprland
+
+# build and prep the i3 manager under x11
+i3:
+  @echo "Switching to the i3 tiling manager"
+  @echo "----------------------------------"
+
+  sudo nixos-rebuild boot --flake ./#i3
+
+# garbage collect unused packages
+trash *PARAMS:
+  @echo "Garbage collecting unused packages to clear disk space"
+  @echo "------------------------------------------------------"
+
+  sudo nix-collect-garbage {{PARAMS}}
+
+# updates the current flake profile while updating all dependencies
+update:
+  @echo "Upgrading all packages in the current profile (and switching to it)"
+  @echo "-------------------------------------------------------------------"
+
+  sudo nixos-rebuild switch --flake ./ --upgrade-all
+
+logs:
+  @echo "System Logs"
+  @echo "-----------"
+  journalctl -b
