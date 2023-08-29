@@ -8,7 +8,6 @@
   # Point to user's home-manager configuration
 
 
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -34,7 +33,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.xserver.xkbVariant = ""; 
 
   # GTK settings
   environment.etc = {
@@ -66,23 +64,38 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      fira-code
+      fira-code-symbols
+      nerdfonts
+      ubuntu_font_family
+    ];
+
+    #fontConfig = {
+    #  defaultFonts = {
+    #    serif = [];
+    #    sanSerif = [];
+    #    monoSpace = [i "firacode" "monopace" ];
+    #  };
+    #};
+    
+  };
+
+
  
   programs.starship.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
-    # terminal / console 
-    alacritty
     # wget and curl for network requests
     wget curl
     # SSH and GPG 
@@ -92,7 +105,7 @@
     # language servers
     nil gopls rust-analyzer nodePackages.typescript-language-server marksman zls vimPlugins.null-ls-nvim helm-ls
     # browser support
-    firefox chromium qutebrowser 
+    firefox qutebrowser 
     # network utilities
     iperf3 inetutils trippy
     # system utilities 
@@ -114,13 +127,8 @@
     # terminal
     alacritty
     # UI nicities
-    arandr lxappearance xfce.thunar juno-theme
-    haskellPackages.greenclip # Clip Manager which works with Rofi
+    arandr 
     juno-theme
-    nitrogen
-    mdp # Markdown Viewer
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
 
     # k8s
     kubectl

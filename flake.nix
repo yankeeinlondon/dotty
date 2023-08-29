@@ -35,7 +35,21 @@
           ];
 
         };
-      };
+
+        sway = lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+          modules = [
+            ./sway/default.nix
+          ];
+        };
+
+        hyprland = lib.nixosSystem {
+          specialArgs = { inherit inputs system; };
+          modules = [
+            ./hyprland/default.nix
+          ];
+        };
+    };
 
       homeManagerConfigurations = {
         ken = home-manager.lib.homeManagerConfiguration {
