@@ -5,6 +5,7 @@
    ./base.nix
   ];
 
+  xdg.portal.wlr.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
@@ -18,17 +19,25 @@
   programs.xwayland.enable = true;
   hardware.opengl.enable = true;
   security.polkit.enable = true;
+  # Autologin
+  services.xserver.displayManager = {
+    autoLogin.enable = true;
+    autoLogin.user = "ken";
+    gdm.wayland = true;
+  };
 
   environment.systemPackages = with pkgs; [
+    wayland
+    xdg-utils
     (waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       })
     )
     kitty
-    rofi-wayland 
     wl-clipboard
-    waybar
+    rofi-wayland 
     wayland-utils
+    gnome3.adwaita-icon-theme
     glpaper 
     dunst 
     libnotify

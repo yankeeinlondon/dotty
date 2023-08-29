@@ -76,8 +76,10 @@
     fonts = with pkgs; [
       fira-code
       fira-code-symbols
-      nerdfonts
-      ubuntu_font_family
+      ( nerdfonts.override { fonts = [ "DroidSansMono" ]; })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
     ];
 
     #fontConfig = {
