@@ -1,6 +1,10 @@
 { services, environment, config, pkgs, ... }:
 
 {
+  imports = [
+    ./base.nix
+  ];
+
   services.xserver = {
     layout = "us";
     enable = true;
@@ -12,3 +16,4 @@
   ];
 
 }
+

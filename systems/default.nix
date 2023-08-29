@@ -51,7 +51,7 @@ rec {
         
         nixpkgs.pkgs = pkgs;
         system.stateVersion = "23.05";
-        networking.hostName = "${name}";
+        networking.hostName = "i3"; # TODO: make this ${name} again when ready
       }
     ];
   };

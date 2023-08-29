@@ -7,7 +7,7 @@
 {
   imports = [ 
     # Include the results of the hardware scan.
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # Add experimental features for Flakes support

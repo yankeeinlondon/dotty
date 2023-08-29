@@ -2,11 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./configuration.nix
-    # load all configuration required for the i3 windows manager
-    ./all.nix
-    ./x11.nix
+    ../nixos/configuration.nix
+    ../wm/x11.nix
   ];
 
   # the remainder of this configuration is specifically for

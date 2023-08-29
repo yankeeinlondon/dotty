@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, ... }:
 
 {
   # Add experimental features for Flakes support
@@ -76,7 +76,9 @@
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
-  
+ 
+  programs.starship.enable = true;
+
   # Packages
   environment.systemPackages = with pkgs; [
     # terminal / console 
@@ -84,7 +86,7 @@
     # wget and curl for network requests
     wget curl
     # SSH and GPG 
-    openssh gnupg pgp-tui
+    openssh gnupg signing-party 
     # proramming language support 
     rustup nodejs_18 go 
     # language servers
@@ -100,7 +102,7 @@
     neofetch
      
     # quality of life
-    exa lazygit starship du-dust bat delta starship just
+    exa lazygit du-dust bat delta just
     autotiling # auto switch from horizontal to vertical in a smart fashion
     mpv
     mpvScripts.youtube-quality

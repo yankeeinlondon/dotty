@@ -1,5 +1,5 @@
 {
-  description = "Dotty: NixOS configuration for i3, sway, and Hyprland tiling managers";
+  description = "Dotty: a NixOS configuration for i3, sway, and Hyprland tiling managers";
 
   inputs = {
     # Packages
