@@ -12,7 +12,7 @@
     NIXOS_OZONE_WL = "1"; # hint to electron apps to use wayland
 
     # If you're cursor becomes invisible; enable below
-    # WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   programs.xwayland.enable = true;
@@ -20,16 +20,15 @@
   security.polkit.enable = true;
 
   # Autologin
-  services.wayland.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "ken";
-    gdm.enable = true;
-    gdm.wayland = true;
-  };
+  #wayland.displayManager = {
+  #  autoLogin.enable = true;
+  #  autoLogin.user = "ken";
+  #  gdm.enable = true;
+  #  gdm.wayland = true;
+  #};
 
   environment.systemPackages = with pkgs; [
     wayland
-    xwayland
     eww-wayland
     qt6.full 
     libsForQt5.systemsettings
@@ -47,7 +46,9 @@
     glpaper 
     dunst 
     libnotify
+    networkmanagerapplet
     shotman # screenshot util for wayland 
+    swayimg # https://github.com/artemsen/swayimg
   ];
 
 }

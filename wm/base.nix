@@ -7,7 +7,6 @@
   nixpkgs.config.allowUnfree = true;
   # Point to user's home-manager configuration
 
-
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -57,12 +56,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
     jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   fonts = {
@@ -110,12 +104,14 @@
     lf # text based file manager
     home-manager # NixOS Home Manager
     neofetch
+    pciutils
      
     # quality of life
     exa lazygit du-dust bat delta just
     autotiling # auto switch from horizontal to vertical in a smart fashion
     mpv
     mpvScripts.youtube-quality
+    zathura
 
     # productivity
     obsidian theme-obsidian2 iconpack-obsidian
@@ -126,6 +122,11 @@
     # UI nicities
     arandr 
     juno-theme
+    bibata-cursors bibata-cursors-translucent
+    gruvbox-dark-gtk
+    gruvbox-gtk-theme
+    vimPlugins.gruvbox
+    adw-gtk3
 
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects

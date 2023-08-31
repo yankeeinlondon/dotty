@@ -17,6 +17,8 @@
     hyprland
     xdg-desktop-portal-hyprland
     hyprland-protocols
+    hyprpaper
+    cliphist
   ];
 }
 

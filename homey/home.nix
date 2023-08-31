@@ -7,6 +7,22 @@
   home.homeDirectory = "/home/ken";
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
+  gtk = {
+    enable = true;
+    theme.name = "adw-gtk3";
+    cursorTheme.name = "Bibata-Modern-Ice"; 
+    iconTheme.name = "GruvboxPlus";
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = "nvim";
+    "application/pdf" = [ "zathura.desktop" ];
+    "image/*" = [ "nsxiv.desktop" "swayimg.desktop" ];
+    "video/png" = [ "mpv.desktop" ];
+    "video/jpg" = [ "mpv.desktop" ];
+    "video/*" = [ "mpv.desktop" ];
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -16,6 +32,7 @@
     telegram-desktop
     discord
     whatsapp-for-linux
+    dconf
     _1password-gui
     _1password
 
@@ -28,7 +45,7 @@
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
+   # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];

@@ -28,6 +28,7 @@
     lxappearance xfce.thunar 
     mdp # Markdown Viewer
     nitrogen
+    nsxiv # https://nsxiv.codeberg.page
     clipboard-jh
   ];
 
