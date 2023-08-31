@@ -96,6 +96,7 @@
     openssh gnupg 
     signing-party # https://salsa.debian.org/signing-party-team/signing-party
     gpgme gnome.seahorse 
+    pinentry
     # proramming language support 
     rustup nodejs_18 go 
     # language servers
