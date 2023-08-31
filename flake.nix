@@ -17,9 +17,7 @@
     
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config = { allowUnfree = true; };
       };
 
       lib = nixpkgs.lib;
@@ -30,13 +28,12 @@
         # i3 configuration using X11
         i3 = lib.nixosSystem {
         specialArgs = { inherit inputs system; };
-
           modules = [
             ./i3/default.nix
           ];
-
         };
-
+        
+        # Sway manager running under Wayland
         sway = lib.nixosSystem {
           specialArgs = { inherit inputs system; };
           modules = [
@@ -44,6 +41,7 @@
           ];
         };
 
+        # Hyprland manager running under Wayland 
         hyprland = lib.nixosSystem {
           specialArgs = { inherit inputs system; };
           modules = [
@@ -54,10 +52,8 @@
 
       homeManagerConfigurations = {
         ken = home.homeManagerConfiguration {
-          inherit system pkgs;
-          username = "ken";
-          homeDirectory = "/home/ken";
-          configuration = [
+          inherit pkgs;
+          modules = [
             ./homey/home.nix
           ];
         };

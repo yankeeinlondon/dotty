@@ -5,14 +5,6 @@
   # manage.
   home.username = "ken";
   home.homeDirectory = "/home/ken";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
@@ -40,6 +32,21 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty";
+      startup = [
+        # { command = "firefox"; }
+      ];
+    };
+    extraConfig = ''
+      bindsym Print                 exec shotman -c output
+      bindsym Print+Shift           exec shotman -c region
+      bindsym Print+Shift+Control   exec shotman -c window
+    '';
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -68,12 +75,6 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-  };
-
-  # Autologin
-  services.xserver.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "ken";
   };
 
 

@@ -28,6 +28,7 @@
     lxappearance xfce.thunar 
     mdp # Markdown Viewer
     nitrogen
+    clipboard-jh
   ];
 
 }

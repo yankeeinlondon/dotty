@@ -7,22 +7,27 @@
   ];
 
   networking.hostName = "sway";
+  xdg.portal.wlr.enable = true;
+
+  wayland.windowManager.sway {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty";
+      startup = [
+        # { command = "firefox"; }
+      ];
+    };
+    extraConfig = ''
+      bindsym Print                 exec shotman -c output
+      bindsym Print+Shift           exec shotman -c region
+      bindsym Print+Shift+Control   exec shotman -c window
+    '';
+  };
 
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    #config = rec {
-    #  modifier = "Mod4";
-    #  terminal = "kitty";
-    #  startup = [
-    #    # { command = "firefox"; }
-    #  ];
-    #};
-    #extraConfig = ''
-    #  bindsym Print                 exec shotman -c output
-    #  bindsym Print+Shift           exec shotman -c region
-    #  bindsym Print+Shift+Control   exec shotman -c window
-    #'';
   };
 
   systemd.user.services.kanshi = {

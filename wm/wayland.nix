@@ -5,7 +5,6 @@
    ./base.nix
   ];
 
-  xdg.portal.wlr.enable = true;
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
@@ -18,10 +17,10 @@
 
   programs.xwayland.enable = true;
   hardware.opengl.enable = true;
-  # hardware.opengl.mesaPackage = pkgs.mesa;
   security.polkit.enable = true;
+
   # Autologin
-  services.xserver.displayManager = {
+  services.wayland.displayManager = {
     autoLogin.enable = true;
     autoLogin.user = "ken";
     gdm.enable = true;
@@ -32,9 +31,10 @@
     wayland
     xwayland
     eww-wayland
-    qt5-wayland qt6-wayland
-    xdg-utils
+    qt6.full 
+    libsForQt5.systemsettings
     libsForQt5.polkit-kde-agent
+    xdg-utils
     (waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       })
