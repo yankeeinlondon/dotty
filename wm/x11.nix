@@ -27,8 +27,6 @@
     juno-theme
     lxappearance xfce.thunar 
     mdp # Markdown Viewer
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
     nitrogen
   ];
 

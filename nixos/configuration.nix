@@ -22,43 +22,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  services.xserver.xkbVariant = ""; 
-
-  # GTK settings
-  environment.etc = {
-    "xdg/gtk-2.0/gtkrc".text = ''
-      gtk-error-bell=0
-    '';
-    "xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-error-bell=false
-      gtk-application-prefer-dark-theme=true
-    '';
-    "xdg/gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-error-bell=false
-      gtk-appliction-prefer-dark-theme=true
-    '';
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
   
@@ -72,28 +35,7 @@
     isNormalUser = true;
     description = "Ken Snyder";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

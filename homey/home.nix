@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ home, config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -76,9 +76,6 @@
     autoLogin.user = "ken";
   };
 
-  # User Packages
-  users.users.ken.packages = with pkgs; [
-  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

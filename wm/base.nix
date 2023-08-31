@@ -28,7 +28,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   # GTK settings
   environment.etc = {
     "xdg/gtk-2.0/gtkrc".text = ''
@@ -87,8 +86,6 @@
     
   };
 
-
- 
   programs.starship.enable = true;
 
   # Packages
@@ -96,7 +93,9 @@
     # wget and curl for network requests
     wget curl
     # SSH and GPG 
-    openssh gnupg signing-party 
+    openssh gnupg 
+    signing-party # https://salsa.debian.org/signing-party-team/signing-party
+    gpgme gnome.seahorse 
     # proramming language support 
     rustup nodejs_18 go 
     # language servers
@@ -126,6 +125,9 @@
     # UI nicities
     arandr 
     juno-theme
+
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
 
     # k8s
     kubectl

@@ -23,6 +23,7 @@
       };
 
       lib = nixpkgs.lib;
+      home = home-manager.lib;
     in 
     {
       nixosConfigurations = {
@@ -49,10 +50,10 @@
             ./hyprland/default.nix
           ];
         };
-    };
+      };
 
       homeManagerConfigurations = {
-        ken = home-manager.lib.homeManagerConfiguration {
+        ken = home.homeManagerConfiguration {
           inherit system pkgs;
           username = "ken";
           homeDirectory = "/home/ken";

@@ -14,6 +14,9 @@
 
   environment.systemPackages = with pkgs; [
     swww
+    hyprland
+    hyprdim
+    nwg-displays
   ];
 }
 
