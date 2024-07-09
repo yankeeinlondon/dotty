@@ -107,7 +107,7 @@
     pciutils
      
     # quality of life
-    exa lazygit du-dust bat delta just
+    eza lazygit du-dust bat delta just
     autotiling # auto switch from horizontal to vertical in a smart fashion
     mpv
     mpvScripts.youtube-quality
