@@ -14,9 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  home.username = "ken";
-  home.homeDirectory = "/home/ken";
-  home.stateVersion = "24.05";
+  #home.username = "ken";
+  #home.homeDirectory = "/home/ken";
+  #home.stateVersion = "24.05";
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
