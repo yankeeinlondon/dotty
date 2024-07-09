@@ -14,7 +14,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixy"; # Define your hostname.
+  home.username = "ken";
+  home.homeDirectory = "/home/ken";
+  home.stateVersion = "24.05";
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
