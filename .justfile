@@ -53,6 +53,12 @@ hyprland:
 
   sudo nixos-rebuild boot --flake ./#hyprland
 
+# switch to GNOME desktop
+dotty:
+  @echo "Switching to the Gnome desktop"
+  @echo "------------------------------"
+  sudo nixos-rebuild boot --flake ./#dotty
+
 # build and prep the i3 manager under x11
 i3:
   @echo "Switching to the i3 tiling manager"
