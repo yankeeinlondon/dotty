@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../nixos/configuration.nix
+    /etc/nix-os/configuration.nix
     ../wm/x11.nix
   ];
 

@@ -3,9 +3,9 @@
 
   inputs = {
     # Packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # ensure home-manager uses same nixpkgs that we do
     # Colors
     nix-colors.url = "github:misterio77/nix-colors";
@@ -13,7 +13,7 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs:  
     let # pre-computed let block
-      system = "x86_64-linux";
+      system = "aarch64-linux";
     
       pkgs = import nixpkgs {
         inherit system;
@@ -25,6 +25,12 @@
     in 
     {
       nixosConfigurations = {
+      	dotty = lib.nixosSystem {
+	  specialArgs = { inherit inputs system; };
+	  modules = [
+	    ./nixos/configuration.nix
+	  ];
+	};
         # i3 configuration using X11
         i3 = lib.nixosSystem {
         specialArgs = { inherit inputs system; };
