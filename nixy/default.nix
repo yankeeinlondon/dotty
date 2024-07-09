@@ -83,16 +83,42 @@
     description = "Ken Snyder";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+        neovim
+        eza
+        just
+        htop
+        shellcheck
+        ripgrep
         lua
+        socat
+        fzf
         fx
+        jq
         rust-analyzer
+        trippy
+        rustscan
         wasmer
         wasmtime
         nixd
         deno
         bun
+        nodejs
+        iperf3
+        du-dust
+        ripgrep
+        bat
+        nerdfonts
+        kdash
+        atuin
+	shellcheck
+	starship
 	vimPlugins.nvim-web-devicons
+	cmake
 	commitlint
+	delta
+	git
+	gh
+	openssl
     ];
   };
 
@@ -103,11 +129,11 @@
   services.xserver.displayManager.autoLogin.user = "ken";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  #systemd.services."getty@tty1".enable = false;
-  #systemd.services."autovt@tty1".enable = false;
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # Install firefox.
-  #programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -115,34 +141,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  neovim
-  eza
-  bat
-  just
-  htop
-  ripgrep
-  lua
-  socat
-  fzf
-  fd
-  jq
-  trippy
-  rustscan
-  nodejs
-  iperf3
-  du-dust
-  nerdfonts
-  kdash
-  atuin
-  shellcheck
-  starship
-  cmake
-  delta
-  git
-  gh
-  openssl
-  curl
-  wget
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
