@@ -25,7 +25,7 @@
     in 
     {
       nixosConfigurations = {
-      	dotty = lib.nixosSystem {
+      	nixy = lib.nixosSystem {
 	  specialArgs = { inherit inputs system; };
 	  modules = [
 	    ./nixos/configuration.nix
